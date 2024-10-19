@@ -1,0 +1,94 @@
+﻿@model BethanysPieShop.Models.Pie
+
+@{
+    ViewData["Title"] = "Add Pie Or Cake";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="AddPie" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShortDescription" class="control-label"></label>
+        <input asp-for="ShortDescription" class="form-control" />
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LongDescription" class="control-label"></label>
+        <textarea asp-for="LongDescription" class="form-control"></textarea>
+        <span asp-validation-for="LongDescription" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AllergyInformation" class="control-label"></label>
+        <input asp-for="AllergyInformation" class="form-control" />
+        <span asp-validation-for="AllergyInformation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <!-- Image Upload with Preview -->
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="control-label"></label>
+        <input type="file" class="form-control" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(event)" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <!-- Image Preview -->
+    <div class="form-group">
+        <img id="imagePreview" src="#" alt="Image Preview" style="max-height: 200px; display: none;" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IsPieOfTheWeek" class="control-label"></label>
+        <input asp-for="IsPieOfTheWeek" type="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="InStock" class="control-label"></label>
+        <input asp-for="InStock" type="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes" class="control-label"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add Pie" class="btn btn-primary" />
+    </div>
+</form>
+
+<a href="@Url.Action("ManagePies", "Admin")">Back to List</a>
+
+<a href="@Url.Action("Index", "Admin")">Dashboard</a>
+
+<!-- JavaScript to preview the image -->
+<script type="text/javascript">
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block'; // Show the image element
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

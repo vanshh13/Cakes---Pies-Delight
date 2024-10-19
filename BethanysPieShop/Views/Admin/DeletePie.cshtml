@@ -1,0 +1,11 @@
+﻿@model BethanysPieShop.Models.Pie
+
+<h2>Delete Pie</h2>
+
+<form method="post" asp-action="DeletePie" asp-route-pieId="@Model.PieId">
+    <div>
+        <p>Are you sure you want to delete the pie: @Model.Name?</p>
+        <input type="submit" value="Yes" />
+        <a href="@Url.Action("ManagePies", "Admin")">Cancel</a>
+    </div>
+</form>

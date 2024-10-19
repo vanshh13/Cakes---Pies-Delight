@@ -1,0 +1,41 @@
+﻿@model BethanysPieShop.Models.Order
+
+<h2>Order Details</h2>
+
+<div>
+    <h4>Order ID: @Model.OrderId</h4>
+    <p>Order Placed: @Model.OrderPlaced.ToString("MM/dd/yyyy")</p>
+    
+</div>
+
+<h4>Order Items</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pie Name</th>
+            <th>Amount</th>
+            <th>Price per Pie</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.OrderDetails)
+        {
+            <tr>
+                <td>@detail.Pie.Name</td>
+                <td>@detail.Amount</td>
+                <td>@detail.Price.ToString("c")</td>
+                <td>@(detail.Amount * detail.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Calculate and display the total -->
+@{
+    decimal totalAmount = Model.OrderDetails.Sum(od => od.Amount * od.Price);
+}
+
+<div>
+    <strong>Total Amount for Order: @totalAmount.ToString("c")</strong>
+</div>

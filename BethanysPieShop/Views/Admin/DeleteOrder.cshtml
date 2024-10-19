@@ -1,0 +1,24 @@
+﻿@model BethanysPieShop.Models.Order
+
+<h2>Delete Order</h2>
+
+<div>
+    <h4>Are you sure you want to delete the order?</h4>
+    <dl class="dl-horizontal">
+        <dt>Order ID</dt>
+        <dd>@Model.OrderId</dd>
+        <dt>First Name</dt>
+        <dd>@Model.FirstName</dd>
+        <dt>Last Name</dt>
+        <dd>@Model.LastName</dd>
+        <dt>Order Total</dt>
+        <dd>@Model.OrderTotal</dd>
+    </dl>
+    <form method="post" action="@Url.Action("DeleteOrderConfirmed", "Admin")">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.OrderId" />
+        <a href="@Url.Action("DeleteOrderConfirmed", "Admin", new { orderId = @Model.OrderId })">Delete</a>
+        <a href="@Url.Action("ManageOrders", "Admin")" class="btn btn-secondary">Cancel</a>
+    </form>
+
+</div>

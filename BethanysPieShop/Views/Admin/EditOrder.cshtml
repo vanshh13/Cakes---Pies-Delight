@@ -1,0 +1,44 @@
+﻿@model BethanysPieShop.Models.Order
+@{
+    ViewBag.Title = "Edit Order";
+}
+<h2>Edit Order</h2>
+
+<form asp-action="EditOrder" asp-route-orderId="@Model.OrderId" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="OrderId" class="control-label"></label>
+        <input asp-for="OrderId" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OrderTotal" class="control-label"></label>
+        <input asp-for="OrderTotal" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OrderPlaced" class="control-label"></label>
+        <input asp-for="OrderPlaced" class="form-control" readonly />
+    </div>
+
+    <!-- Status Dropdown with selected value -->
+    <div class="form-group">
+        <label asp-for="Status" class="control-label">Order Status</label>
+        <select asp-for="Status" class="form-control" asp-items="ViewBag.Statuses"></select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="ManageOrders" class="btn btn-secondary">Cancel</a>
+</form>

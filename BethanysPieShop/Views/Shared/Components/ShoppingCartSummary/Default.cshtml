@@ -1,0 +1,13 @@
+﻿@model ShoppingCartViewModel
+
+
+    <li>
+        <!-- Making the cart icon a clickable button -->
+        <a href="@Url.Action("Index", "ShoppingCart")" >
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span id="cart-status">
+                @Model.ShoppingCart.ShoppingCartItems.Count
+            </span>
+        </a>
+    </li>
+

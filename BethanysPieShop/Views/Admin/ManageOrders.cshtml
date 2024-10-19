@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BethanysPieShop.Models.Order>
+
+<h2>Manage Orders</h2>
+
+<!-- Search Form -->
+<form asp-action="ManageOrders" method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <input type="text" name="searchQuery" class="form-control" placeholder="Search by Customer Name or Order ID" value="@ViewBag.SearchQuery" />
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>Customer</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.FirstName @order.LastName</td>
+                <td>@order.OrderPlaced.ToString("g")</td>
+                <td>@order.Status</td>
+                <td>
+                    <a href="@Url.Action("EditOrder", "Admin", new { orderId = order.OrderId })">Edit</a> |
+                    <a href="@Url.Action("DeleteOrder", "Admin", new { orderId = order.OrderId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

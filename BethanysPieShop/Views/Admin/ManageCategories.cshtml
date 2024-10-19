@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BethanysPieShop.Models.Category>
+
+<h2>Manage Categories</h2>
+
+<!-- Search Form -->
+<form asp-action="ManageCategories" method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <input type="text" name="searchQuery" class="form-control" placeholder="Search by Category Name" value="@ViewBag.SearchQuery" />
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>@category.Description</td>
+                <td>
+                    <a asp-action="DeleteCategory" asp-route-categoryId="@category.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="3">
+                <a asp-action="AddCategory">Add New Category</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

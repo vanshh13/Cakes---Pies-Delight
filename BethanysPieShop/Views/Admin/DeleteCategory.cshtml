@@ -1,0 +1,13 @@
+﻿@model BethanysPieShop.Models.Category
+
+<h2>Delete Category</h2>
+
+<form asp-action="DeleteCategoryConfirmed" method="post">
+    <div>
+        <p>Are you sure you want to delete the category: @Model.CategoryName?</p>
+        <input type="hidden" name="categoryId" value="@Model.CategoryId" />
+
+        <input type="submit" value="Yes" />
+        <a href="@Url.Action("ManageCategories", "Admin")">Cancel</a>
+    </div>
+</form>

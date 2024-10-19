@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BethanysPieShop.Models.Pie>
+
+<h2>Manage Pies</h2>
+
+<!-- Search Form -->
+<form asp-action="ManagePies" method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <input type="text" name="searchQuery" class="form-control" placeholder="Search by Pie Name" value="@ViewBag.SearchQuery" />
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pie in Model)
+
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(pie.ImageUrl))
+                    {
+                        <img src="@Url.Content(pie.ImageUrl)" alt="@pie.Name" style="max-height: 100px; max-width: 100px;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>@pie.Name</td>
+                <td>@pie.Price</td>
+                <td>
+                    <a href="@Url.Action("EditPie", "Admin", new { pieId = pie.PieId })">Edit</a> |
+                    <a href="@Url.Action("DeletePie", "Admin", new { pieId = pie.PieId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
