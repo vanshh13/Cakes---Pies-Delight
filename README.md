@@ -42,7 +42,7 @@
 3. Update `appsettings.json` with your SQL Server connection string:
     ```json
     "ConnectionStrings": {
-        "DefaultConnection": "Server=(localdb)\\mssqllocaldb;;Database=BethanysPieShop;Trusted_Connection=True;"
+        "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=BethanysPieShop;Trusted_Connection=True;"
     }
     ```
 
