@@ -84,13 +84,13 @@
 ## Screenshots
 
 ### Home Page
-![Home Page](screenshots/home-page.jpg)
+![Home Page](screenshots/home-page.png)
 
 ### Product Page
-![Product Page](screenshots/product-page.jpg)
+![Product Page](screenshots/product-page.png)
 
 ### Shopping Cart
-![Shopping Cart](screenshots/shopping-cart.jpg)
+![Shopping Cart](screenshots/shopping-cart.png)
 
 ## Contributing
 
