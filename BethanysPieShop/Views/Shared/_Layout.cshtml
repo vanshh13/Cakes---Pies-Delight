@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/jquery.js"></script>
@@ -50,14 +51,12 @@
                                 @await Component.InvokeAsync("CategoryMenu")
                                 <!-- Show Shopping Cart Summary -->
                                 @await Component.InvokeAsync("ShoppingCartSummary")
-                                                            <li><a asp-controller="Order" asp-action="CustomerOrders">My Orders</a></li> <!-- Show only for logged-in customers -->
+                                <li><a asp-controller="Order" asp-action="CustomerOrders">My Orders</a></li> <!-- Show only for logged-in customers -->
+                                <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+
 
                             }
 
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
                         }
 
 

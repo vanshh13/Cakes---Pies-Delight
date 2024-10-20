@@ -2,9 +2,59 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h2>Admin Dashboard</h2>
+<h2 class="text-center mb-5">Admin Dashboard</h2>
 
-<a href="@Url.Action("ManagePies", "Admin")">Manage Pies&Cakes</a> |
-<a href="@Url.Action("ManageOrders", "Admin")">Manage Orders</a> |
-<a href="@Url.Action("AddPie", "Admin")">AddPies&Cakes</a> |
-<a href="@Url.Action("ManageCategories", "Admin")">Category</a> 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card text-center shadow-lg" style="padding: 30px;">
+                <div class="card-body">
+                    <i class="fas fa-birthday-cake fa-5x mb-4" style="color:#ff6b6b;"></i>
+                    <h4 class="card-title mb-3">Manage Pies & Cakes</h4>
+                    <a href="@Url.Action("ManagePies", "Admin")" class="btn btn-lg btn-primary">Go to Manage</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card text-center shadow-lg" style="padding: 30px;">
+                <div class="card-body">
+                    <i class="fas fa-box-open fa-5x mb-4" style="color:#4c6ef5;"></i>
+                    <h4 class="card-title mb-3">Manage Orders</h4>
+                    <a href="@Url.Action("ManageOrders", "Admin")" class="btn btn-lg btn-primary">Go to Manage</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card text-center shadow-lg" style="padding: 30px;">
+                <div class="card-body">
+                    <i class="fas fa-plus-circle fa-5x mb-4" style="color:#51cf66;"></i>
+                    <h4 class="card-title mb-3">Add Pies & Cakes</h4>
+                    <a href="@Url.Action("AddPie", "Admin")" class="btn btn-lg btn-primary">Go to Add</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card text-center shadow-lg" style="padding: 30px;">
+                <div class="card-body">
+                    <i class="fas fa-tags fa-5x mb-4" style="color:#ffa94d;"></i>
+                    <h4 class="card-title mb-3">Category</h4>
+                    <a href="@Url.Action("ManageCategories", "Admin")" class="btn btn-lg btn-primary">Go to Categories</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- New card for managing admins -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card text-center shadow-lg" style="padding: 30px;">
+                <div class="card-body">
+                    <i class="fas fa-user-shield fa-5x mb-4" style="color:#7950f2;"></i>
+                    <h4 class="card-title mb-3">Manage Admins</h4>
+                    <a href="@Url.Action("ManageAdmins", "Admin")" class="btn btn-lg btn-primary">Go to Admin Management</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

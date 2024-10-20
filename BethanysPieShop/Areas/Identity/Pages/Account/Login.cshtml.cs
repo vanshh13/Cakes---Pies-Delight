@@ -88,6 +88,8 @@ namespace BethanysPieShop.Areas.Identity.Pages.Account
                         if (roles.Contains("Admin"))
                         {
                             _logger.LogInformation("Admin user logged in.");
+                            return LocalRedirect("/Admin");
+
                         }
                         else if (roles.Contains("User"))
                         {

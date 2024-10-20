@@ -1,0 +1,41 @@
+﻿@model ManageAdminViewModel
+
+<h2>Manage Admins</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    @if (Model.Admins.Contains(user.Email))
+                    {
+                        <span class="badge badge-success">Admin</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-secondary">User</span>
+                    }
+                </td>
+                <td>
+                    @if (!Model.Admins.Contains(user.Email))
+                    {
+                        <form asp-action="AddAdmin" method="post">
+                            <input type="hidden" name="userId" value="@user.Id" />
+                            <button type="submit" class="btn btn-primary">Make Admin</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

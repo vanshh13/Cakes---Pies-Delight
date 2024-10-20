@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace BethanysPieShop.Controllers
 {
@@ -24,10 +25,11 @@ namespace BethanysPieShop.Controllers
         private readonly ILogger<AdminController> _logger;  // Logger dependency
         private readonly ICategoryRepository _categoryRepository;
         private readonly IWebHostEnvironment _webHostEnvironment; // Inject the hosting environment
-
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         // Constructor injection of dependencies
-        public AdminController(IPieRepository pieRepository, IOrderRepository orderRepository, AppDbContext context, ILogger<AdminController> logger, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment)
+        public AdminController(IPieRepository pieRepository, IOrderRepository orderRepository, AppDbContext context, ILogger<AdminController> logger, ICategoryRepository categoryRepository, IWebHostEnvironment webHostEnvironment, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _pieRepository = pieRepository;
             _orderRepository = orderRepository;
@@ -35,7 +37,8 @@ namespace BethanysPieShop.Controllers
             _context = context;
             _logger = logger;  // Assigning the logger
             _webHostEnvironment = webHostEnvironment; // Initialize in the constructor
-
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // Index page for Admin, could be a dashboard or general landing
@@ -419,7 +422,31 @@ namespace BethanysPieShop.Controllers
 
             return NotFound();
         }
+        public async Task<IActionResult> ManageAdmins()
+        {
+            var users = _userManager.Users.ToList();
+            var model = new ManageAdminViewModel
+            {
+                Users = users,
+                Admins = (await _userManager.GetUsersInRoleAsync("Admin")).Select(u => u.Email).ToList()
+            };
+            return View(model);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> AddAdmin(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                if (!await _roleManager.RoleExistsAsync("Admin"))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                }
+                await _userManager.AddToRoleAsync(user, "Admin");
+            }
+            return RedirectToAction("ManageAdmins");
+        }
 
 
 
