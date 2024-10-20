@@ -290,7 +290,7 @@ namespace BethanysPieShop.Controllers
             if (order != null)
             {
                 _orderRepository.DeleteOrder(orderId);
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("ManageOrders");
             }
             return RedirectToAction("Index", "Admin");
         }
